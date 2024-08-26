@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -10,7 +9,6 @@ import {
 import styles from "@/styles/CheckoutForm.module.css";
 import { useRouter } from "next/navigation";
 
-
 export default function CheckoutForm({ amount }) {
   const router = useRouter();
 
@@ -19,6 +17,7 @@ export default function CheckoutForm({ amount }) {
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [user, setUser] = useState({});
   const [userCart, setUserCart] = useState([]);
 
   const handleSubmit = async (event) => {
@@ -48,7 +47,6 @@ export default function CheckoutForm({ amount }) {
   };
 
   const completeOrder = async () => {
-
     try {
       const orderData = {
         user: user?._id,
@@ -60,13 +58,15 @@ export default function CheckoutForm({ amount }) {
         orderDate: new Date(),
       };
 
+      // API route to complete an order
+
       // const response = await API.saveOrder({
       //   ...orderData
       // });
 
-      setOrderSent(true)
+      // redirects to /completed page
+
       // router.push("/completed");
-      
     } catch (error) {
       console.error("Error saving order:", error);
     }
